@@ -58,14 +58,17 @@
                 document.body.style.backgroundColor = backgroundColor;
                 document.body.style.color = textColor;
 
+                if (step === 50) {
+                    if (toBlack === true) {
+                        document.getElementById('toggler').innerHTML = '→ LIGHT MODE';
+                    }
+                    else {
+                        document.getElementById('toggler').innerHTML = '→ DARK MODE';
+                    }
+                }
+
                 step++;
             }, interval);
-            if (toBlack === true) {
-                document.getElementById('toggler').innerHTML = '→ LIGHT MODE';
-            }
-            else {
-                document.getElementById('toggler').innerHTML = '→ DARK MODE';
-            }
         }
 
         function toggleColorShift() {
