@@ -8,14 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono&display=swap" rel="stylesheet">
     <title>ampersand - videos for humans</title>
     <style>
-        body {background-color: white;}
-
-        a, body {
-            text-decoration: none;
+        body {
+            background-color: white;
+            color: black;
             font-family: 'Chivo Mono', monospace;
             font-size: 16px;
-            color: black;
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         a:hover {text-decoration: underline;}
     </style>
 </head>
@@ -26,7 +30,42 @@
     <a href="https://youtube.com/@ampersandtv">→ YOUTUBE</a><br>
     <a href="https://instagram.com/@ampersandvideo">→ INSTAGRAM</a><br>
     <a href="https://undivisible.dev/">→ MY WEBSITE</a><br><br>
+    <a onclick="toggleColorShift()">→ DARK MODE</a><br><br>
 
     UNDIVISIBLE INDUSTRIES
+    <script>
+        let isShiftingToBlack = true;
+        let intervalId;
+
+        function startColorShift(toBlack) {
+            const duration = 1000;
+            const steps = 100;
+            const interval = duration / steps;
+            let step = 0;
+
+            clearInterval(intervalId);
+
+            intervalId = setInterval(() => {
+                if (step >= steps) {
+                    clearInterval(intervalId);
+                    return;
+                }
+
+                const ratio = toBlack ? step / steps : (steps - step) / steps;
+                const backgroundColor = `rgb(${255 * (1 - ratio)}, ${255 * (1 - ratio)}, ${255 * (1 - ratio)})`;
+                const textColor = `rgb(${255 * ratio}, ${255 * ratio}, ${255 * ratio})`;
+
+                document.body.style.backgroundColor = backgroundColor;
+                document.body.style.color = textColor;
+
+                step++;
+            }, interval);
+        }
+
+        function toggleColorShift() {
+            startColorShift(isShiftingToBlack);
+            isShiftingToBlack = !isShiftingToBlack;
+        }
+    </script>
 </body>
 </html>
