@@ -30,7 +30,7 @@
     <a href="https://youtube.com/@ampersandtv">→ YOUTUBE</a><br>
     <a href="https://instagram.com/@ampersandvideo">→ INSTAGRAM</a><br>
     <a href="https://undivisible.dev/">→ MY WEBSITE</a><br><br>
-    <a onclick="toggleColorShift()">→ DARK MODE</a><br><br>
+    <a onclick="toggleColorShift()" id="toggler">→ DARK MODE</a><br><br>
 
     UNDIVISIBLE INDUSTRIES
     <script>
@@ -38,7 +38,7 @@
         let intervalId;
 
         function startColorShift(toBlack) {
-            const duration = 1000;
+            const duration = 1500;
             const steps = 100;
             const interval = duration / steps;
             let step = 0;
@@ -60,6 +60,12 @@
 
                 step++;
             }, interval);
+            if (toBlack === true) {
+                document.getElementById('toggler').innerHTML = '→ LIGHT MODE';
+            }
+            else {
+                document.getElementById('toggler').innerHTML = '→ DARK MODE';
+            }
         }
 
         function toggleColorShift() {
